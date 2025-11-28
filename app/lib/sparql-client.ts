@@ -8,28 +8,37 @@ export type { ResultRow } from "sparql-http-client/ResultParser";
 type StreamClientOptions = ConstructorParameters<typeof BaseStreamClient>[0];
 type ParsingClientOptions = ConstructorParameters<typeof BaseParsingClient>[0];
 
-const fetchWithoutCompression = ((
+/**
+ * Determines whether HTTP compression should be enabled for SPARQL queries.
+ * Controlled by the SPARQL_HTTP_COMPRESS environment variable.
+ * Defaults to false (compression disabled) to maintain current behavior.
+ */
+const shouldCompress =
+  process.env.SPARQL_HTTP_COMPRESS === "true" ||
+  process.env.SPARQL_HTTP_COMPRESS === "1";
+
+const createFetchWithCompressionSetting = ((
   url: string | URL | globalThis.Request,
   init?: Parameters<typeof baseFetch>[1]
 ) => {
   const finalInit =
     typeof init === "object" && init !== null
-      ? { compress: false, ...init }
-      : { compress: false };
+      ? { compress: shouldCompress, ...init }
+      : { compress: shouldCompress };
 
   return baseFetch(url, finalInit);
 }) as typeof baseFetch;
 
-fetchWithoutCompression.Headers = baseFetch.Headers;
-fetchWithoutCompression.Request = baseFetch.Request;
-fetchWithoutCompression.Response = baseFetch.Response;
+createFetchWithCompressionSetting.Headers = baseFetch.Headers;
+createFetchWithCompressionSetting.Request = baseFetch.Request;
+createFetchWithCompressionSetting.Response = baseFetch.Response;
 
 export class StreamClient extends BaseStreamClient {
   constructor(options?: StreamClientOptions) {
     // @ts-expect-error - Type mismatch between BaseQuad and Quad variants is safe at runtime
     super({
       ...options,
-      fetch: options?.fetch ?? fetchWithoutCompression,
+      fetch: options?.fetch ?? createFetchWithCompressionSetting,
     });
   }
 }
@@ -39,7 +48,7 @@ export class ParsingClient extends BaseParsingClient {
     // @ts-expect-error - Type mismatch between BaseQuad and Quad variants is safe at runtime
     super({
       ...options,
-      fetch: options?.fetch ?? fetchWithoutCompression,
+      fetch: options?.fetch ?? createFetchWithCompressionSetting,
     });
   }
 }
