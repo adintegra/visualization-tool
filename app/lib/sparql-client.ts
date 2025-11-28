@@ -8,40 +8,39 @@ export type { ResultRow } from "sparql-http-client/ResultParser";
 type StreamClientOptions = ConstructorParameters<typeof BaseStreamClient>[0];
 type ParsingClientOptions = ConstructorParameters<typeof BaseParsingClient>[0];
 
-const fetchWithoutCompression: typeof baseFetch = (url, init) => {
+const fetchWithoutCompression = ((
+  url: string | URL | globalThis.Request,
+  init?: Parameters<typeof baseFetch>[1]
+) => {
   const finalInit =
     typeof init === "object" && init !== null
       ? { compress: false, ...init }
       : { compress: false };
 
   return baseFetch(url, finalInit);
-};
+}) as typeof baseFetch;
 
-Object.assign(fetchWithoutCompression, {
-  Headers: baseFetch.Headers,
-  Request: baseFetch.Request,
-  Response: baseFetch.Response,
-});
-
-const withDefaultFetch = <T extends { fetch?: typeof baseFetch }>(
-  options?: T
-) => {
-  const opts = options ?? ({} as T);
-  return {
-    ...opts,
-    fetch: opts.fetch ?? fetchWithoutCompression,
-  };
-};
+fetchWithoutCompression.Headers = baseFetch.Headers;
+fetchWithoutCompression.Request = baseFetch.Request;
+fetchWithoutCompression.Response = baseFetch.Response;
 
 export class StreamClient extends BaseStreamClient {
   constructor(options?: StreamClientOptions) {
-    super(withDefaultFetch(options));
+    // @ts-expect-error - Type mismatch between BaseQuad and Quad variants is safe at runtime
+    super({
+      ...options,
+      fetch: options?.fetch ?? fetchWithoutCompression,
+    });
   }
 }
 
 export class ParsingClient extends BaseParsingClient {
   constructor(options?: ParsingClientOptions) {
-    super(withDefaultFetch(options));
+    // @ts-expect-error - Type mismatch between BaseQuad and Quad variants is safe at runtime
+    super({
+      ...options,
+      fetch: options?.fetch ?? fetchWithoutCompression,
+    });
   }
 }
 
