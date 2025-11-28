@@ -1,6 +1,6 @@
 import { rollup } from "d3-array";
 import { NamedNode } from "rdf-js";
-import { ParsingClient } from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import { MAX_BATCH_SIZE } from "@/graphql/context";
 import { iriToNode } from "@/rdf/query-utils";

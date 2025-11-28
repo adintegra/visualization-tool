@@ -3,8 +3,7 @@ import { IncomingMessage } from "http";
 import DataLoader from "dataloader";
 import { GraphQLResolveInfo } from "graphql";
 import rdf from "rdf-ext";
-import StreamClient from "sparql-http-client";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import StreamClient, { ParsingClient } from "@/lib/sparql-client";
 import { LRUCache } from "typescript-lru-cache";
 
 import { DimensionValue } from "@/domain/data";

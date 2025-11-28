@@ -1,4 +1,4 @@
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 import { Client } from "urql";
 
 import { ConfiguratorState, DataSource } from "@/config-types";

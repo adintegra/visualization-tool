@@ -1,5 +1,4 @@
-import StreamClient from "sparql-http-client";
-import { ParsingClient } from "sparql-http-client/ParsingClient";
+import StreamClient, { ParsingClient } from "@/lib/sparql-client";
 import { LRUCache } from "typescript-lru-cache";
 
 type SparqlClient = StreamClient | ParsingClient;

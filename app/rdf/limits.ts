@@ -1,5 +1,5 @@
 import { CubeDimension } from "rdf-cube-view-query";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import { DimensionValue } from "@/domain/data";
 import { truthy } from "@/domain/types";

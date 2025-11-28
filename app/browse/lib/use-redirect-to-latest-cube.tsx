@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import { ConfiguratorState } from "@/config-types";
 import { getMaybeCachedSparqlUrl } from "@/graphql/caching-utils";

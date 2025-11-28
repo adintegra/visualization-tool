@@ -1,7 +1,6 @@
 import { CubeDimension } from "rdf-cube-view-query";
 import { NamedNode } from "rdf-js";
-import ParsingClient from "sparql-http-client/ParsingClient";
-import { ResultRow } from "sparql-http-client/ResultParser";
+import { ParsingClient, ResultRow } from "@/lib/sparql-client";
 import { LRUCache } from "typescript-lru-cache";
 
 import { SingleFilters } from "@/config-types";

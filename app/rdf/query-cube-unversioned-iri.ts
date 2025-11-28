@@ -1,4 +1,4 @@
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 /** Creates SPARQL query to fetch cube's version history. */
 const getCubeUnversionedIriQuery = (cubeIri: string) => {

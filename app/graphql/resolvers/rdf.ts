@@ -1,7 +1,7 @@
 import { ascending, descending } from "d3-array";
 import DataLoader from "dataloader";
 import groupBy from "lodash/groupBy";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 import { topology } from "topojson-server";
 import { LRUCache } from "typescript-lru-cache";
 import { parse as parseWKT } from "wellknown";

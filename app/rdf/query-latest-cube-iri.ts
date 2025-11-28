@@ -1,4 +1,4 @@
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 /** Creates SPARQL query to fetch latest cube iri.
  * Works for both versioned and unversioned cubes.

@@ -1,7 +1,7 @@
 import { SELECT } from "@tpluscode/sparql-builder";
 import uniqBy from "lodash/uniqBy";
 import { Term } from "rdf-js";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 import { LRUCache } from "typescript-lru-cache";
 
 import { batchLoad } from "@/rdf/batch-load";

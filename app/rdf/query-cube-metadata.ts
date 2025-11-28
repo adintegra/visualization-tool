@@ -1,6 +1,6 @@
 import { SELECT } from "@tpluscode/sparql-builder";
 import { Literal, NamedNode } from "rdf-js";
-import { ParsingClient } from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import { DataCubeMetadata } from "@/domain/data";
 import { DataCubePublicationStatus } from "@/graphql/query-hooks";

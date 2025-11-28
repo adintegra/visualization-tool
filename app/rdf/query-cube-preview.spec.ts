@@ -1,5 +1,5 @@
 import rdf from "rdf-ext";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 import { describe, expect, it, vi } from "vitest";
 
 import * as ns from "./namespace";

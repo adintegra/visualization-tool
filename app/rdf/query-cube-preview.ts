@@ -2,7 +2,7 @@ import groupBy from "lodash/groupBy";
 import uniqBy from "lodash/uniqBy";
 import rdf from "rdf-ext";
 import { NamedNode, Quad } from "rdf-js";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import {
   BaseComponent,
@@ -112,7 +112,7 @@ CONSTRUCT {
     VALUES ?cube { <${iri}> }
     ?cube cube:observationConstraint/sh:property/sh:path ?observationPredicate .
     { SELECT ?observation ?observationPredicate ?observationValue ?observationLabel ?observationPosition WHERE {
-    { 
+    {
 #pragma evaluate on  ## improve preview speed (wrt Stardog issue 2094 on Stardog >= 10 // see also SBAR-1122)
       SELECT ?observation WHERE {
       VALUES ?cube { <${iri}> }

@@ -6,7 +6,7 @@ import { AnyPointer } from "clownface";
 import orderBy from "lodash/orderBy";
 import uniqBy from "lodash/uniqBy";
 import rdf from "rdf-ext";
-import { StreamClient } from "sparql-http-client";
+import { StreamClient } from "@/lib/sparql-client";
 
 import { DimensionValue, HierarchyValue, parseTerm } from "@/domain/data";
 import { truthy } from "@/domain/types";

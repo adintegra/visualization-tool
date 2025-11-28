@@ -5,8 +5,7 @@ import pickBy from "lodash/pickBy";
 import sortBy from "lodash/sortBy";
 import { CubeDimension } from "rdf-cube-view-query";
 import { Quad, Term } from "rdf-js";
-import { ParsingClient } from "sparql-http-client/ParsingClient";
-import { ResultRow } from "sparql-http-client/ResultParser";
+import { ParsingClient, ResultRow } from "@/lib/sparql-client";
 import { LRUCache } from "typescript-lru-cache";
 
 import { Filters, FilterValue } from "@/config-types";
@@ -318,7 +317,7 @@ CONSTRUCT {
     geo:hasGeometry ?geometry ;
     schema:latitude ?latitude ;
     schema:longitude ?longitude .
-} WHERE { 
+} WHERE {
   ${
     queryFilters
       ? ""

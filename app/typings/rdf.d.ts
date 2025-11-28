@@ -3,7 +3,7 @@ declare module "rdf-cube-view-query" {
   import DatasetExt from "rdf-ext/lib/Dataset";
   import DefaultGraphExt from "rdf-ext/lib/DefaultGraph";
   import { Literal, NamedNode, Quad, Term } from "rdf-js";
-  import { ParsingClient } from "sparql-http-client/ParsingClient";
+  import { ParsingClient } from "@/lib/sparql-client";
 
   type NodeInit = {
     parent?: Node;

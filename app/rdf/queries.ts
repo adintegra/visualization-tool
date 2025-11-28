@@ -5,7 +5,7 @@ import mapKeys from "lodash/mapKeys";
 import { CubeDimension, Filter, LookupSource, View } from "rdf-cube-view-query";
 import rdf from "rdf-ext";
 import { Literal, NamedNode } from "rdf-js";
-import { ParsingClient } from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 import { LRUCache } from "typescript-lru-cache";
 
 import { Filters, FilterValueMulti } from "@/config-types";

@@ -1,7 +1,7 @@
 import { descending } from "d3-array";
 import groupBy from "lodash/groupBy";
 import uniqBy from "lodash/uniqBy";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import { SearchCube } from "@/domain/data";
 import { truthy } from "@/domain/types";
@@ -372,7 +372,7 @@ const mkScoresQuery = (
           "subthemeLabel",
           { locale }
         )}
-      } 
+      }
       `
           : ""
       }
@@ -396,31 +396,31 @@ const mkScoresQuery = (
         CONTAINS(LCASE(?title_it), LCASE(?keyword)) ||
         CONTAINS(LCASE(?title_en), LCASE(?keyword)) ||
         CONTAINS(LCASE(?title_),   LCASE(?keyword)) ||
-      
+
         CONTAINS(LCASE(?description_de), LCASE(?keyword)) ||
         CONTAINS(LCASE(?description_fr), LCASE(?keyword)) ||
         CONTAINS(LCASE(?description_it), LCASE(?keyword)) ||
         CONTAINS(LCASE(?description_en), LCASE(?keyword)) ||
         CONTAINS(LCASE(?description_),   LCASE(?keyword)) ||
-          
-        CONTAINS(LCASE(?creatorLabel_de), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?creatorLabel_fr), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?creatorLabel_it), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?creatorLabel_en), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?creatorLabel_),   LCASE(?keyword)) || 
-          
-        CONTAINS(LCASE(?themeLabel_de), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?themeLabel_fr), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?themeLabel_it), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?themeLabel_en), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?themeLabel_),   LCASE(?keyword)) || 
-          
-        CONTAINS(LCASE(?subthemeLabel_de), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?subthemeLabel_fr), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?subthemeLabel_it), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?subthemeLabel_en), LCASE(?keyword)) || 
-        CONTAINS(LCASE(?subthemeLabel_),   LCASE(?keyword)) || 
-          
+
+        CONTAINS(LCASE(?creatorLabel_de), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?creatorLabel_fr), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?creatorLabel_it), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?creatorLabel_en), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?creatorLabel_),   LCASE(?keyword)) ||
+
+        CONTAINS(LCASE(?themeLabel_de), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?themeLabel_fr), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?themeLabel_it), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?themeLabel_en), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?themeLabel_),   LCASE(?keyword)) ||
+
+        CONTAINS(LCASE(?subthemeLabel_de), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?subthemeLabel_fr), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?subthemeLabel_it), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?subthemeLabel_en), LCASE(?keyword)) ||
+        CONTAINS(LCASE(?subthemeLabel_),   LCASE(?keyword)) ||
+
         CONTAINS(LCASE(?publisher), LCASE(?keyword))
       )`
           : ""

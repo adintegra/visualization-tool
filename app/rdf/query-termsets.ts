@@ -1,5 +1,5 @@
 import groupBy from "lodash/groupBy";
-import ParsingClient from "sparql-http-client/ParsingClient";
+import { ParsingClient } from "@/lib/sparql-client";
 
 import { ComponentTermsets } from "@/domain/data";
 import { stringifyComponentId } from "@/graphql/make-component-id";
